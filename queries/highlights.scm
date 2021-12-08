@@ -254,9 +254,10 @@
 
 [(math_operator) "="] @operator
 
+"\\documentclass" @function.builtin
+
 [
   "\\usepackage"
-  "\\documentclass"
   "\\input"
   "\\include"
   "\\subfile"
