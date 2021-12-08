@@ -1,16 +1,3 @@
-;; Math
-(displayed_equation child:(_)* @text.math)
-(inline_formula child:(_)* @text.math)
-
-((environment
-  (begin
-    name:(word) @text.math.frame)
-  child:(_)* @text.math
-  (end
-    name:(word) @text.math.frame))
- (#match? @text.math.frame
-      "^(displaymath|displaymath\\*|equation|equation\\*|multline|multline\\*|eqnarray|eqnarray\\*|align|align\\*|array|array\\*|split|split\\*|alignat|alignat\\*|gather|gather\\*|flalign|flalign\\*)$"))
-
 [
   (generic_command_name)
   "\\newcommand"
@@ -392,3 +379,16 @@
   (#not-match? @text.environment.name
 "^(displaymath|displaymath\\*|equation|equation\\*|multline|multline\\*|eqnarray|eqnarray\\*|align|align\\*|array|array\\*|split|split\\*|alignat|alignat\\*|gather|gather\\*|flalign|flalign\\*)$"
       ))
+
+;; Math
+(displayed_equation child:(_)* @text.math)
+(inline_formula child:(_)* @text.math)
+
+((environment
+  (begin
+    name:(word) @text.math.frame)
+  child:(_)* @text.math
+  (end
+    name:(word) @text.math.frame))
+ (#match? @text.math.frame
+      "^(displaymath|displaymath\\*|equation|equation\\*|multline|multline\\*|eqnarray|eqnarray\\*|align|align\\*|array|array\\*|split|split\\*|alignat|alignat\\*|gather|gather\\*|flalign|flalign\\*)$"))
