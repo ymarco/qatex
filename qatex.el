@@ -85,6 +85,15 @@
   "Face used for things surrounding math.
 To distinguish from the math content itself."
   :group 'tree-sitter-hl-faces)
+(defun tree-sitter-hl-face:text.math.subscripted (beg end)
+  "Highlight the range (beg end) like a superscript"
+  (put-text-property beg end 'height 0.1)
+  (put-text-property beg end 'display '(raise -0.3)))
+
+(defun tree-sitter-hl-face:text.math.superscripted (beg end)
+  "Highlight the range (beg end) like a superscript"
+  (put-text-property beg end 'height 0.1)
+  (put-text-property beg end 'display '(raise 0.3)))
 
 (define-derived-mode qatex-mode text-mode "Qatex"
   "TODO"
@@ -92,6 +101,21 @@ To distinguish from the math content itself."
   (setq-local tree-sitter-language qatex-ts-language
               tree-sitter-hl-default-patterns qatex-ts-patterns)
   (tree-sitter-hl-mode))
+
+(defun qatex--highlight-capture (capture)
+  "Highlight the given CAPTURE."
+  (pcase-let ((`(,face . (,beg-byte . ,end-byte)) capture))
+    ;; DONE: If it's a function, call it with (BEG END).
+    (cond ((facep face)
+           (tree-sitter-hl--append-text-property
+            (byte-to-position beg-byte)
+            (byte-to-position end-byte) 'face face))
+          ((functionp face)
+           (funcall face
+                    (byte-to-position beg-byte)
+                    (byte-to-position end-byte))))))
+
+(advice-add #'tree-sitter-hl--highlight-capture :override #'qatex--highlight-capture)
 
 (provide 'qatex)
 ;;; qatex.el ends here

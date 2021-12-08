@@ -380,6 +380,47 @@
 "^(displaymath|displaymath\\*|equation|equation\\*|multline|multline\\*|eqnarray|eqnarray\\*|align|align\\*|array|array\\*|split|split\\*|alignat|alignat\\*|gather|gather\\*|flalign|flalign\\*)$"
       ))
 
+
+;; giggles
+;; catch subscript and superscript in math
+;; duplicated for all math catches
+
+((displayed_equation ; sub
+  (_) .
+  child:(text (word) @operator) .
+  child:(_) @text.math.subscripted)
+ (#match? @operator "^_$"))
+((displayed_equation ; sup
+  (_) .
+  child:(text (word) @operator) .
+  child:(_) @text.math.superscripted)
+ (#match? @operator "^\\^$"))
+(inline_formula child:(_)* @text.math) ; TODO
+
+((environment ; sub
+  (begin
+    name:(word) @text.math.frame)
+  (_) .
+  child:(_) @operator .
+  child:(_) @text.math.subscripted
+  (end
+    name:(word) @text.math.frame))
+ (#match? @text.math.frame
+      "^(displaymath|displaymath\\*|equation|equation\\*|multline|multline\\*|eqnarray|eqnarray\\*|align|align\\*|array|array\\*|split|split\\*|alignat|alignat\\*|gather|gather\\*|flalign|flalign\\*)$")
+ (#match? @operator "^_$"))
+((environment
+  (begin
+    name:(word) @text.math.frame)
+  (_) .
+  child:(_) @operator .
+  child:(_) @text.math.superscripted
+  (end
+    name:(word) @text.math.frame))
+ (#match? @text.math.frame
+      "^(displaymath|displaymath\\*|equation|equation\\*|multline|multline\\*|eqnarray|eqnarray\\*|align|align\\*|array|array\\*|split|split\\*|alignat|alignat\\*|gather|gather\\*|flalign|flalign\\*)$")
+ (#match? @operator "^\\^$"))
+
+
 ;; Math
 (displayed_equation child:(_)* @text.math)
 (inline_formula child:(_)* @text.math)

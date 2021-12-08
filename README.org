@@ -1,0 +1,12 @@
+#+title: QaTeX
+
+A LaTeX major-mode using tree-sitter.
+
+Unfortunately, tree-sitter-latex has multiple issues
+- Maths aren't centralized
+  - No common anscestor to ~display_equation~ and ~inline_formula~
+  - You must query yourself against envs that are align/gather/etc
+- Grouping is odd
+  - in ~\[a b \alpha^c_d\]~, tree-sitter-latex would put ~a b~ in a ~text~ child,
+    ~\alpha~ in a ~generic_command~ child, and ~^b_c~ in another ~text~ child
+  - ~$abc\)~ is valid maths
