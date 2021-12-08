@@ -4,9 +4,11 @@
 
 ((environment
   (begin
-    name:(word) @_env)
-  child:(_)* @text.math)
- (#match? @_env
+    name:(word) @text.math.frame)
+  child:(_)* @text.math
+  (end
+    name:(word) @text.math.frame))
+ (#match? @text.math.frame
       "^(displaymath|displaymath\\*|equation|equation\\*|multline|multline\\*|eqnarray|eqnarray\\*|align|align\\*|array|array\\*|split|split\\*|alignat|alignat\\*|gather|gather\\*|flalign|flalign\\*)$"))
 
 [
@@ -292,7 +294,7 @@
 ((word) @punctuation.delimiter
 (#eq? @punctuation.delimiter "&"))
 
-["$" "\\[" "\\]" "\\(" "\\)"] @punctuation.delimiter
+["$" "\\[" "\\]" "\\(" "\\)"] @text.math.frame
 
 (label_definition
  name: (_) @text.reference)
