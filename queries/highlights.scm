@@ -8,17 +8,8 @@
 ((environment
   (begin
    name: (word) @_env)) @text.math
-   (#any-of? @_env
-      "displaymath" "displaymath*"
-      "equation" "equation*"
-      "multline" "multline*"
-      "eqnarray" "eqnarray*"
-      "align" "align*"
-      "array" "array*"
-      "split" "split*"
-      "alignat" "alignat*"
-      "gather" "gather*"
-      "flalign" "flalign*"))
+   (#match? @_env
+      "^(displaymath|displaymath\\*|equation|equation\\*|multline|multline\\*|eqnarray|eqnarray\\*|align|align\\*|array|array\\*|split|split\\*|alignat|alignat\\*|gather|gather\\*|flalign|flalign\\*)$"))
 
 [
   (generic_command_name)
@@ -391,28 +382,12 @@
 
 (begin
  name: (_) @text.environment.name
-  (#not-any-of? @text.environment.name
-      "displaymath" "displaymath*"
-      "equation" "equation*"
-      "multline" "multline*"
-      "eqnarray" "eqnarray*"
-      "align" "align*"
-      "array" "array*"
-      "split" "split*"
-      "alignat" "alignat*"
-      "gather" "gather*"
-      "flalign" "flalign*"))
+  (#not-match? @text.environment.name
+"^(displaymath|displaymath\\*|equation|equation\\*|multline|multline\\*|eqnarray|eqnarray\\*|align|align\\*|array|array\\*|split|split\\*|alignat|alignat\\*|gather|gather\\*|flalign|flalign\\*)$"
+      ))
 
 (end
  name: (_) @text.environment.name
-  (#not-any-of? @text.environment.name
-      "displaymath" "displaymath*"
-      "equation" "equation*"
-      "multline" "multline*"
-      "eqnarray" "eqnarray*"
-      "align" "align*"
-      "array" "array*"
-      "split" "split*"
-      "alignat" "alignat*"
-      "gather" "gather*"
-      "flalign" "flalign*"))
+  (#not-match? @text.environment.name
+"^(displaymath|displaymath\\*|equation|equation\\*|multline|multline\\*|eqnarray|eqnarray\\*|align|align\\*|array|array\\*|split|split\\*|alignat|alignat\\*|gather|gather\\*|flalign|flalign\\*)$"
+      ))
