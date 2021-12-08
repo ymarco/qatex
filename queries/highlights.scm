@@ -270,7 +270,7 @@
   "\\includeinkscape"
   "\\usepgflibrary"
   "\\usetikzlibrary"
-] @include
+] @keyword
 
 [
   "\\part"
