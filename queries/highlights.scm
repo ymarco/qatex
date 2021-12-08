@@ -1,14 +1,12 @@
 ;; Math
-[
- (displayed_equation)
- (inline_formula)
-] @text.math
+(displayed_equation child:(_)* @text.math)
+(inline_formula child:(_)* @text.math)
 
-;; This highlights the whole environment like vimtex does
 ((environment
   (begin
-   name: (word) @_env)) @text.math
-   (#match? @_env
+    name:(word) @_env)
+  child:(_)* @text.math)
+ (#match? @_env
       "^(displaymath|displaymath\\*|equation|equation\\*|multline|multline\\*|eqnarray|eqnarray\\*|align|align\\*|array|array\\*|split|split\\*|alignat|alignat\\*|gather|gather\\*|flalign|flalign\\*)$"))
 
 [
