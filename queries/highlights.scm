@@ -30,7 +30,7 @@
   "\\newtheorem"
   "\\declaretheorem"
   "\\newacronym"
-] @function.macro
+] @function.macro-call
 
 [
     "\\ref"
@@ -58,7 +58,7 @@
     "\\crefrange*"
     "\\Crefrange*"
     "\\Crefrange*"
-] @function.macro
+] @function.macro-call
 
 [
     "\\cite"
@@ -117,7 +117,7 @@
     "\\pnotecite"
     "\\Pnotecite"
     "\\fnotecite"
-] @function.macro
+] @function.macro-call
 
 [
     "\\ref"
@@ -137,7 +137,7 @@
     "\\lcnamecrefs"
     "\\labelcref"
     "\\labelcpageref"
-] @function.macro
+] @function.macro-call
 
 
 [
@@ -149,7 +149,7 @@
     "\\crefrange*"
     "\\Crefrange*"
     "\\Crefrange*"
-] @function.macro
+] @function.macro-call
 
 
 [
@@ -199,7 +199,7 @@
   "\\glsuservi"
   "\\Glsuservi"
   "\\GLSuservi"
-] @function.macro
+] @function.macro-call
 
 
 [
@@ -246,7 +246,7 @@
   "\\Glsentryshortpl"
   "\\glsentryfullpl"
   "\\Glsentryfullpl"
-] @function.macro
+] @function.macro-call
 
 (comment) @comment
 
